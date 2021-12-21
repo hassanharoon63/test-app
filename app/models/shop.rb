@@ -12,11 +12,11 @@ class Shop < ActiveRecord::Base
   end
 
   def self.store(auth_session)
-    ShopifyAPI::Base.activate_session(auth_session)
     remote_shop = ShopifyAPI::Shop.current
-    shop = Shop.find_or_initialize_by(shopify_domain: remote_shop.domain)
     customers = ShopifyAPI::Customer.all
     products = ShopifyAPI::Product.all
+
+    shop = Shop.find_or_initialize_by(shopify_domain: remote_shop.domain)
 
     shop.update_attributes(
       shopify_token: auth_session.token,
