@@ -3,7 +3,7 @@ class Shop < ActiveRecord::Base
   include ShopifyApp::ShopSessionStorageWithScopes
 
   has_one :address, as: :addressable, dependent: :destroy
-  accepts_nested_attributes_for :address, allow_destroy: true
+  accepts_nested_attributes_for :address
   has_many :customers, dependent: :destroy
   has_many :products, dependent: :destroy
 
@@ -12,10 +12,10 @@ class Shop < ActiveRecord::Base
   end
 
   def self.store(auth_session)
-    ShopifyApiService.new(auth_session).activate_session
-    shopify_shop = ShopifyApiService.new(auth_session).current_shop
-    shopify_customers = ShopifyApiService.new(auth_session).fetch_customers
-    shopify_products = ShopifyApiService.new(auth_session).fetch_products
+    ShopifyApiService.new.activate_session auth_session
+    shopify_shop = ShopifyApiService.new.fetch_current_shop
+    shopify_customers = ShopifyApiService.new.fetch_customers
+    shopify_products = ShopifyApiService.new.fetch_products
 
     shop = Shop.find_or_initialize_by(shopify_domain: shopify_shop.domain)
     save_shop_data(shop, auth_session, shopify_shop)

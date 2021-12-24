@@ -1,13 +1,9 @@
 class ShopifyApiService
-  def initialize(auth_session)
-    @auth_session = auth_session
+  def activate_session(auth_session)
+    ShopifyAPI::Base.activate_session(auth_session)
   end
 
-  def activate_session
-    ShopifyAPI::Base.activate_session(@auth_session)
-  end
-
-  def current_shop
+  def fetch_current_shop
     ShopifyAPI::Shop.current
   end
 
