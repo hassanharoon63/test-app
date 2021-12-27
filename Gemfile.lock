@@ -114,6 +114,10 @@ GEM
     hashie (5.0.0)
     i18n (1.8.11)
       concurrent-ruby (~> 1.0)
+    interactor (3.1.2)
+    interactor-rails (2.2.1)
+      interactor (~> 3.0)
+      rails (>= 4.2)
     jbuilder (2.11.3)
       activesupport (>= 5.0.0)
     jwt (2.3.0)
@@ -274,6 +278,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)
+  interactor-rails (~> 2.0)
   jbuilder (~> 2.7)
   listen (~> 3.2)
   pg (>= 0.18, < 2.0)
