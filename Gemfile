@@ -52,3 +52,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'shopify_app', '>=17.0.3'
 gem 'shopify_api'
+gem 'interactor-rails', '~> 2.0'
